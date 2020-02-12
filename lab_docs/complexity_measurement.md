@@ -15,6 +15,7 @@
 | 30       | 10      | maximum_flow_dfs@27-83@./algorithms/graph/maximum_flow_dfs.py               |
 | 27       | 10      | maximum_flow_bfs@28-84@./algorithms/graph/maximum_flow_bfs.py               |
 | 26       | 13      | bracket@69-95@./algorithms/strings/breaking_bad.py                          |
+| 26       | 10      | is_palindrome_dict@52-89@./algorithms/linkedlist/is_palindrome.py           |
 
 
 ### Manually counted cyclomatic complexity
