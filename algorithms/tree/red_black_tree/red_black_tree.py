@@ -86,17 +86,24 @@ class RBTree:
         self.fix_insert(node)
 
     def fix_insert(self, node):
+        coverage = [0]*11
         # case 1 the parent is null, then set the inserted node as root and color = 0
         if node.parent is None:
+            coverage[0] = 1
             node.color = 0
             self.root = node
             return
+        else:
+            coverage[1] = 1
             # case 2 the parent color is black, do nothing
         # case 3 the parent color is red
         while node.parent and node.parent.color == 1:
+            coverage[2] = 1
             if node.parent is node.parent.parent.left:
+                coverage[3] = 1
                 uncle_node = node.parent.parent.right
                 if uncle_node and uncle_node.color == 1:
+                    coverage[5] = 1
                     # case 3.1 the uncle node is red
                     # then set parent and uncle color is black and grandparent is red
                     # then node => node.parent
@@ -106,19 +113,24 @@ class RBTree:
                     node = node.parent.parent
                     continue
                 elif node is node.parent.right:
+                    coverage[6] = 1
                     # case 3.2 the uncle node is black or null, and the node is right of parent
                     # then set his parent node is current node
                     # left rotate the node and continue the next
                     node = node.parent
                     self.left_rotate(node)
+                else:
+                    coverage[7] = 1
                 # case 3.3 the uncle node is black and parent node is left
                 # then parent node set black and grandparent set red
                 node.parent.color = 0
                 node.parent.parent.color = 1
                 self.right_rotate(node.parent.parent)
             else:
+                coverage[4] = 1
                 uncle_node = node.parent.parent.left
                 if uncle_node and uncle_node.color == 1:
+                    coverage[8] = 1
                     # case 3.1 the uncle node is red
                     # then set parent and uncle color is black and grandparent is red
                     # then node => node.parent
@@ -128,17 +140,26 @@ class RBTree:
                     node = node.parent.parent
                     continue
                 elif node is node.parent.left:
+                    coverage[9] = 1
                     # case 3.2 the uncle node is black or null, and the node is right of parent
                     # then set his parent node is current node
                     # left rotate the node and continue the next
                     node = node.parent
                     self.right_rotate(node)
+                else:
+                    coverage[10] = 1
                 # case 3.3 the uncle node is black and parent node is left
                 # then parent node set black and grandparent set red
                 node.parent.color = 0
                 node.parent.parent.color = 1
                 self.left_rotate(node.parent.parent)
         self.root.color = 0
+        print(coverage)
+        total = 0
+        for cov in coverage:
+            if cov == 1:
+                total +=10
+        print( '%s%d%s' %("Coverage: ",total, "%"))
 
     def transplant(self, node_u, node_v):
         """
