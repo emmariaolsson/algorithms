@@ -44,10 +44,12 @@ def edmonds_karp(capacity, source, sink):
     # Computes maximum flow from source to sink using BFS.
     # Time complexity : O(V*E^2)
     # V is the number of vertices and E is the number of edges.
+    coverage = [0] * 10
     vertices = len(capacity)
     ret = 0
     flow = [[0]*vertices for i in range(vertices)]
     while True:
+        coverage[0] = 1
         tmp = 0
         q = queue.Queue()
         visit = [False for i in range(vertices)]
@@ -56,27 +58,45 @@ def edmonds_karp(capacity, source, sink):
         q.put((source, 1 << 63))
         # Finds new flow using BFS.
         while q.qsize():
+            coverage[1] = 1
             front = q.get()
             idx, current_flow = front
             if idx == sink:
+                coverage[2] = 1
                 tmp = current_flow
                 break
+            else:
+                coverage[3] = 1
             for nxt in range(vertices):
+                coverage[4] = 1
                 if not visit[nxt] and flow[idx][nxt] < capacity[idx][nxt]:
+                    coverage[5] = 1
                     visit[nxt] = True
                     par[nxt] = idx
                     q.put((nxt, min(current_flow, capacity[idx][nxt]-flow[idx][nxt])))
+                else:
+                    coverage[6] = 1
         if par[sink] == -1: 
+            coverage[7] = 1
             break
+        else:
+            coverage[8] = 1
         ret += tmp
         parent = par[sink]
         idx = sink
         # Update flow array following parent starting from sink.
         while parent != -1:
+            coverage[9] = 1
             flow[parent][idx] += tmp
             flow[idx][parent] -= tmp
             idx = parent
             parent = par[parent]
+    print(coverage)
+    total = 0
+    for cov in coverage:
+        if cov == 1:
+            total +=10
+    print( '%s%d%s' %("Coverage: ",total, "%"))
     return ret
 
 def dinic_bfs(capacity, flow, level, source, sink):
