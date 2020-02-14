@@ -96,7 +96,7 @@ def edmonds_karp(capacity, source, sink):
     for cov in coverage:
         if cov == 1:
             total +=10
-    print( '%s%d%s' %("Coverage: ",total, "%"))
+    print('%d%s' %(total, " % \n"))
     return ret
 
 def dinic_bfs(capacity, flow, level, source, sink):

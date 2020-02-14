@@ -92,6 +92,7 @@ class TestMaximumFlow(unittest.TestCase):
     Arguments:
         unittest {[type]} -- [description]
     """
+ 
     def test_ford_fulkerson(self):
         capacity = [
                 [0, 10, 10, 0, 0, 0, 0],
@@ -114,6 +115,17 @@ class TestMaximumFlow(unittest.TestCase):
                 [0, 0, 0, 0, 0, 0, 0]
             ]
         self.assertEqual(19, edmonds_karp(capacity, 0, 6))
+    def test_edmonds_karp2(self):
+        capacity = [
+                [0, 10, 10, 0, 0, 0, 0],
+                [0, 0, 2, 0, 4, 8, 0],
+                [0, 0, 0, 0, 0, 9, 0],
+                [0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 10],
+                [0, 0, 0, 0, 6, 0, 10],
+                [0, 0, 0, 0, 0, 0, 0]
+            ]
+        self.assertEqual(19, edmonds_karp(capacity, 0, 6))
     def dinic(self):
         capacity = [
                 [0, 10, 10, 0, 0, 0, 0],
@@ -125,6 +137,8 @@ class TestMaximumFlow(unittest.TestCase):
                 [0, 0, 0, 0, 0, 0, 0]
             ]
         self.assertEqual(19, dinic(capacity, 0, 6))
+        
+    
 
 class TestMaximum_Flow_Bfs(unittest.TestCase):
 
