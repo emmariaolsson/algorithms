@@ -19,7 +19,7 @@ def convert(head):
     return ret
 
 class TestSuite(unittest.TestCase):
-
+    #Original testcase
     def test_if_palindrome_dict_positive(self):
         self.l = Node('A')
         self.l.next = Node('B')
@@ -27,21 +27,20 @@ class TestSuite(unittest.TestCase):
         self.l.next.next.next = Node('B')
         self.l.next.next.next.next = Node('A')
         self.assertTrue(is_palindrome_dict(self.l))
-
+    #Original testcase
     def test_if_palindrome_dict_negative(self):
         self.l1 = Node('A')
-        self.l1.next = Node(1)
+        self.l1.next = Node('B')
         self.l1.next.next = Node('C')
         self.l1.next.next.next = Node('B')
-        self.l1.next.next.next.next = Node('A')
         self.assertFalse(is_palindrome_dict(self.l1))
-    """
+    #Suppose to cover branch 0 (if not head)
     def test_if_palindrome_dict_empty(self):
         self.l2 = Node("") #This case needs to be scrutinized. Node() returns error.
         run = is_palindrome_dict(self.l2)
         self.assertTrue(run)
 
-        
+    #Suppose to cover branch 1 (if not head.next)    
     def test_if_palindrome_dict_single(self):
         self.l3 = Node('A')            
         self.assertTrue(is_palindrome_dict(self.l3))
