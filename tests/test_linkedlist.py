@@ -15,7 +15,7 @@ from algorithms.linkedlist import (
 
 class Node(object):
     def __init__(self, x):
-        self.val = x*
+        self.val = x
         self.next = None
 
 
