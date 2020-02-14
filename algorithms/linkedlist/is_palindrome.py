@@ -110,8 +110,12 @@ def is_palindrome_dict(head):
 
 def codeCoverage(branches):
     print("Check out this coverage:")
+    total = 0
     for x in range(12):
         if branches[x] == 1:
+            total +=1
             print("Branch #{} has been checked".format(x))
         else:
             print("Branch #{} has not been checked".format(x))
+    percent = (total/11)*100
+    print("Coverage percent: {}%".format(percent))
