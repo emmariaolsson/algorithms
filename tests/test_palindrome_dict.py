@@ -36,7 +36,7 @@ class TestSuite(unittest.TestCase):
         self.assertFalse(is_palindrome_dict(self.l1))
     #Suppose to cover branch 0 (if not head)
     def test_if_palindrome_dict_empty(self):
-        self.l2 = Node("") #This case needs to be scrutinized. Node() returns error.
+        self.l2 = Node(None) #This case needs to be scrutinized. Node() returns error.
         run = is_palindrome_dict(self.l2)
         self.assertTrue(run)
 
@@ -44,7 +44,7 @@ class TestSuite(unittest.TestCase):
     def test_if_palindrome_dict_single(self):
         self.l3 = Node('A')            
         self.assertTrue(is_palindrome_dict(self.l3))
-    """
+    
         
 
 if __name__ == "__main__":

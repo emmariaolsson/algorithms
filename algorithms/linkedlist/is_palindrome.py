@@ -62,7 +62,9 @@ def is_palindrome_dict(head):
     d = {1: [0,1,5,6], 2: [2,4], 3: [3]}
     '3' is the middle outlier, 2+4=6, 0+6=6 and 5+1=6 so we have a palindrome.
     """
-    if not head or not head.next:
+    if not head: 
+        return True 
+    if not head.next:
         return True
     d = {}
     pos = 0
