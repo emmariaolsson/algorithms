@@ -24,6 +24,27 @@ answer should be
 import copy
 import math
 
+
+def popQueue(new_array, visited, stack, path):
+    #pop from queue
+    src = stack.pop()
+    for k in range(len(new_array)):
+        #checking capacity and visit
+        if(new_array[src][k] > 0 and visited[k] == 0 ):
+            #if not, put into queue and chage to visit and save path
+            visited[k] = 1
+            stack.append(k)
+            path[k] = src
+    return new_array, visited, stack, path, src
+
+def minFlow(tmp, min, new_array, path):
+    while(tmp != 0):
+        #find minimum flow
+        if(min > new_array[path[tmp]][tmp]):
+            min = new_array[path[tmp]][tmp]
+        tmp = path[tmp]
+    return tmp, min, new_array, path
+
 def maximum_flow_dfs(adjacency_matrix):
     #initial setting
     new_array = copy.deepcopy(adjacency_matrix)
@@ -46,15 +67,7 @@ def maximum_flow_dfs(adjacency_matrix):
 
         #DFS to find path
         while(len(stack) > 0):
-            #pop from queue
-            src = stack.pop()
-            for k in range(len(new_array)):
-                #checking capacity and visit
-                if(new_array[src][k] > 0 and visited[k] == 0 ):
-                    #if not, put into queue and chage to visit and save path
-                    visited[k] = 1
-                    stack.append(k)
-                    path[k] = src
+            new_array, visited, stack, path, src = popQueue(new_array, visited, stack, path)
             
         #if there is no path from src to sink
         if(visited[len(new_array) - 1] == 0):
@@ -64,11 +77,7 @@ def maximum_flow_dfs(adjacency_matrix):
         tmp = len(new_array) - 1
 
         #Get minimum flow
-        while(tmp != 0):
-            #find minimum flow
-            if(min > new_array[path[tmp]][tmp]):
-                min = new_array[path[tmp]][tmp]
-            tmp = path[tmp]
+        tmp, min, new_array, path = minFlow(tmp, min, new_array, path)
 
         #initial setting
         tmp = len(new_array) - 1
