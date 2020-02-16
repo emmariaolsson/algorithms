@@ -491,6 +491,46 @@ class TestTextJustification(unittest.TestCase):
                                             , 16)
                          )
 
+    def test_text_justification_1(self):
+        """ test that the text_justification method can throw a value exception """
+        words = ["someVeryLongWordThatIsGreaterThanTheLineLength"]
+        line_len = 16
+
+        self.assertRaises(ValueError, lambda : text_justification(words, line_len))
+
+    def test_text_justification_2(self):
+        """ test that the text_justification method pads a single word input with spaces """
+        words = ["word"]
+        line_len = 16
+
+        result = text_justification(words, line_len)
+        expected = ["word            "]
+        self.assertEqual(result, expected)
+
+    def test_text_justification_3(self):
+        """ 
+        test that the text_justification function can handle a word of the length
+        same as line length
+        """
+        words = ["one", "two", "thirdirdird", "fourth"]
+        line_len = 11
+
+        result = text_justification(words, line_len)
+        expected = ["one     two", "thirdirdird", "fourth     "]
+        self.assertEqual(result, expected)
+
+    def test_text_justification_4(self):
+        """
+        test that the function at least adds one space between every word and
+        wraps words to next line if no space can fit
+        """
+        words = ["first", "second", "some", "word", "firsts", "second"]
+        line_len = 12
+
+        result = text_justification(words, line_len)
+        expected = ["first second", "some    word", "firsts      ", "second      "]
+        self.assertEqual(result, expected)
+
 class TestMinDistance(unittest.TestCase):
     def test_min_distance(self):
         self.assertEqual(2, min_distance("sea", "eat"))
