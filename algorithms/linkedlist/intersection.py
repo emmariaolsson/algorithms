@@ -26,11 +26,9 @@ def intersection(h1, h2):
             flag = (count, h1.next, h2.next)
 
         if h1:
-            visited[3] = 1
             h1 = h1.next
 
         if h2:
-            visited[5] = 1
             h2 = h2.next
 
     long_len = count    # Mark the length of the longer of the two lists
