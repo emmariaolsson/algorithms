@@ -33,7 +33,7 @@ def maximum_flow_bfs(adjacency_matrix):
     total = 0
 
     while(1):
-        branches[0] = 1
+        branches[0] = 1 #for measuring branch coverage
         #setting min to max_value
         min = math.inf
         #save visited nodes
@@ -102,13 +102,5 @@ def maximum_flow_bfs(adjacency_matrix):
 
 def codeCoverage(branches):
     print("Check out this coverage:")
-    total = 0
-    for x in range(11):
-        if branches[x] == 1:
-            total+=1
-            print("Branch #{} has been checked".format(x))
-        else:
-            print("Branch #{} has not been checked".format(x))
-    percent = (total/11)*100
-    print("Coverage percent: {}%".format(percent))
+    print(branches)
 
