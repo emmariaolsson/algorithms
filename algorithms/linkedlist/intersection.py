@@ -11,10 +11,9 @@
    """
 import unittest
 
-def intersection(h1, h2):
-
-    count = 0
+def iterate_lists(h1, h2):
     flag = None
+    count = 0
     h1_orig = h1
     h2_orig = h2
 
@@ -27,19 +26,17 @@ def intersection(h1, h2):
 
         if h1:
             h1 = h1.next
-
         if h2:
             h2 = h2.next
 
-    long_len = count    # Mark the length of the longer of the two lists
-    short_len = flag[0]
-
     if flag[1] is None:
-        shorter = h1_orig
-        longer = h2_orig
+        return h1_orig, h2_orig, count, flag[0]
     elif flag[2] is None:
-        shorter = h2_orig
-        longer = h1_orig
+        return h2_orig, h1_orig, count, flag[0]
+
+
+def intersection(h1, h2):
+    longer, shorter, long_len, short_len = iterate_lists(h1, h2)
 
     while longer and shorter:
 
