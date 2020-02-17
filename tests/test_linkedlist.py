@@ -239,6 +239,44 @@ class TestSuite(unittest.TestCase):
 
         self.assertEqual(7, intersection.intersection(a1, a2).val)
 
+    def test_intersection_no_merge(self):
+        # create linked list as:
+        # 1 -> 3 -> 5
+        # 2 -> 4 -> 6
+        a1 = Node(1)
+        b1 = Node(3)
+        c1 = Node(5)
+        a2 = Node(2)
+        b2 = Node(4)
+        c2 = Node(6)
+
+        a1.next = b1
+        b1.next = c1
+        a2.next = b2
+        b2.next = c2
+
+        self.assertEqual(None, intersection.intersection(a1, a2))
+
+    def test_intersection_one_longer(self):
+        # create linked list as:
+        # 1 -> 3 -> 5
+        # 2 -> 4 -> 6
+        pre_a1 = Node(0)
+        a1 = Node(1)
+        b1 = Node(3)
+        c1 = Node(5)
+        a2 = Node(2)
+        b2 = Node(4)
+        c2 = Node(6)
+
+        pre_a1.next = a1
+        a1.next = b1
+        b1.next = c1
+        a2.next = b2
+        b2.next = c2
+
+        self.assertEqual(None, intersection.intersection(pre_a1, a2))
+
 
 if __name__ == "__main__":
     unittest.main()
