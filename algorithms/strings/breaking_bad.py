@@ -109,5 +109,5 @@ def bracket(words, symbols):
                                              word[sym[1]:])
         else:
             visited[10] = 1
-    print(f'Visited: {visited}')
+    print(f'Breaking bad bracket coverage: {visited}')
     return tuple(word if word not in result else result[word] for word in words)

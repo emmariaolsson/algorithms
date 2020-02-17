@@ -69,7 +69,7 @@ def intersection(h1, h2):
         if longer == shorter:
             visited[12] = 1
             # The nodes match, return the node
-            print(f'Visited: {visited}')
+            print(f'Intersection coverage: {visited}')
             return longer
         else:
             visited[13] = 1
