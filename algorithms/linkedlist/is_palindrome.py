@@ -18,22 +18,13 @@ def is_palindrome_dict(head):
     d = {}
     pos = 0
     while head:
+        #Helpfunction fill_dict to decrease cyclomatic coplexity
         fill_dict(head, d, pos)
         head = head.next
         pos += 1
-    checksum = pos - 1
-    middle = 0
-    for v in d.values():
-        if len(v) % 2 != 0:
-            middle += 1
-        else:
-            step = 0
-            for i in range(0, len(v)):
-                if v[i] + v[len(v) - 1 - step] != checksum:
-                    return False
-                step += 1
-        if middle > 1:
-            return False
+    #Helpfunction to decrease cyclomatic coplexity
+    if not check_valid_palindrome(head, d, pos):
+        return False
     return True
 
 def fill_dict(head, d, pos):
@@ -41,3 +32,26 @@ def fill_dict(head, d, pos):
         d[head.val].append(pos)
     else:
         d[head.val] = [pos]
+    return d, head, pos
+
+def check_valid_palindrome(head, d, pos):
+    checksum = pos - 1
+    middle = 0
+    for v in d.values():
+        if len(v) % 2 != 0:
+            middle += 1
+        else:
+            if not odd_palindrome(v, checksum):
+                return False
+        if middle > 1:
+            return False
+    return True
+
+def odd_palindrome(v, checksum):
+    step = 0
+    for i in range(0, len(v)):
+        if v[i] + v[len(v) - 1 - step] != checksum:
+            return False
+        step += 1
+    return True
+
