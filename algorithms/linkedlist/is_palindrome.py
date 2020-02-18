@@ -41,13 +41,14 @@ def check_valid_palindrome(head, d, pos):
         if len(v) % 2 != 0:
             middle += 1
         else:
-            if not odd_palindrome(v, checksum):
+            #Helpfunction to decrease cyclomatic coplexity
+            if not even_palindrome(v, checksum):
                 return False
         if middle > 1:
             return False
     return True
 
-def odd_palindrome(v, checksum):
+def even_palindrome(v, checksum):
     step = 0
     for i in range(0, len(v)):
         if v[i] + v[len(v) - 1 - step] != checksum:
