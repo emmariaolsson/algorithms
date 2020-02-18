@@ -39,7 +39,7 @@ def strip_url_params1(url, params_to_strip=None):
             for i in range(len(visited_Branches)):
                 checked += (1 if visited_Branches[i] == 1 else 0)
             print(visited_Branches)
-            print(str(checked/len(visited_Branches)+"%"))
+            print(str(checked/len(visited_Branches))+"%")
             return url
         else:
             visited_Branches[6] = 1
