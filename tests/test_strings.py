@@ -20,7 +20,7 @@ from algorithms.strings import (
     reverse_vowel,
     reverse_words,
     roman_to_int,
-    strip_url_params1, strip_url_params2, strip_url_params3,
+    strip_url_params1,
     is_valid_coordinates_0, is_valid_coordinates_1,
     is_valid_coordinates_regular_expression,
     word_squares,
@@ -387,16 +387,9 @@ class TestStripUrlParams(unittest.TestCase):
         self.assertEqual(strip_url_params1("www.saadbenn.com?a=1&b=2&a=2"), "www.saadbenn.com?a=1&b=2")
         self.assertEqual(strip_url_params1("www.saadbenn.com?a=1&b=2", ['b']), "www.saadbenn.com?a=1")
         
-        self.assertEqual(strip_url_params1("www.saadbenn.coma=1&b=2"), "www.saadbenn.coma=1&b=2www.saadbenn.coma=1&b=2")
-        self.assertEqual(strip_url_params1("www.saadbenn.com?"), "www.saadbenn.com?")
         self.assertEqual(strip_url_params1("www.saadbenn.com?b=2&a=1", ['b']), "www.saadbenn.com?&a=1")
+        self.assertEqual(strip_url_params1("www.saadbenn.com?"), "www.saadbenn.com?")
         self.assertEqual(strip_url_params1("www.saadbenn.com?=5"), "www.saadbenn.com?")
-    def test_strip_url_params2(self):
-        self.assertEqual(strip_url_params2("www.saadbenn.com?a=1&b=2&a=2"), "www.saadbenn.com?a=1&b=2")
-        self.assertEqual(strip_url_params2("www.saadbenn.com?a=1&b=2", ['b']), "www.saadbenn.com?a=1")
-    def test_strip_url_params3(self):
-        self.assertEqual(strip_url_params3("www.saadbenn.com?a=1&b=2&a=2"), "www.saadbenn.com?a=1&b=2")
-        self.assertEqual(strip_url_params3("www.saadbenn.com?a=1&b=2", ['b']), "www.saadbenn.com?a=1")
 
 
 class TestValidateCoordinates(unittest.TestCase):
