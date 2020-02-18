@@ -18,7 +18,7 @@ def valid_solution_hashtable(board):
             value_row = board[i][j]
             value_col = board[j][i]
             if not value_row:
-                #Not covered
+                #New test covers
                 branches[2] = 1 
                 print(branches)
                 return False
