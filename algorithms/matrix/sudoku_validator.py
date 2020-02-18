@@ -7,78 +7,59 @@ The board is always 9 cells by 9 cells, and every cell only contains integers fr
 
 # Using dict/hash-table
 from collections import defaultdict
+branches = [0]*14
 def valid_solution_hashtable(board):
     for i in range(len(board)):
+        branches[0] = 1
         dict_row = defaultdict(int)
         dict_col = defaultdict(int)
         for j in range(len(board[0])):
+            branches[1] = 1
             value_row = board[i][j]
             value_col = board[j][i]
-            if not value_row or value_col == 0:
+            if not value_row:
+                #Not covered
+                branches[2] = 1 
+                print(branches)
                 return False
-            if value_row in dict_row:
+            elif value_col == 0:
+                branches[3] = 1
+                print(branches)
+                return False
+            elif value_row in dict_row:
+                #Not covered
+                branches[4] = 1
+                print(branches)
                 return False
             else:
+                branches[5] = 1
                 dict_row[value_row] += 1
 
             if value_col in dict_col:
+                #Not covered
+                branches[6] = 1
+                print(branches)
                 return False
             else:
+                branches[7] = 1
                 dict_col[value_col] += 1
 
     for i in range(3):
+        branches[8] = 1
         for j in range(3):
+            branches[9] = 1
             grid_add = 0
             for k in range(3):
+                branches[10] = 1
                 for l in range(3):
+                    branches[11] = 1
                     grid_add += board[i*3+k][j*3+l]
             if grid_add != 45:
+                #Not covered
+                branches[12] = 1
+                print(branches)
                 return False
-    return True
-
-
-# Without hash-table/dict
-def valid_solution(board):
-    correct = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    # check rows
-    for row in board:
-        if sorted(row) != correct:
-            return False
-
-    # check columns
-    for column in zip(*board):
-        if sorted(column) != correct:
-            return False
-
-    # check regions
-    for i in range(3):
-        for j in range(3):
-            region = []
-            for line in board[i*3:(i+1)*3]:
-                region += line[j*3:(j+1)*3]
-
-            if sorted(region) != correct:
-                return False
-
-    # if everything correct
-    return True
-
-
-# Using set
-def valid_solution_set (board):
-    valid = set(range(1, 10))
-
-    for row in board:
-        if set(row) != valid:
-            return False
-
-    for col in [[row[i] for row in board] for i in range(9)]:
-        if set(col) != valid:
-            return False
-
-    for x in range(3):
-        for y in range(3):
-            if set(sum([row[x*3:(x+1)*3] for row in board[y*3:(y+1)*3]], [])) != valid:
-                return False
-
+            else:
+                branches[13] = 1
+    print(branches)
     return True
