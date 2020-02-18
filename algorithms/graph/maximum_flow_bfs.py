@@ -97,10 +97,6 @@ def maximum_flow_bfs(adjacency_matrix):
             tmp = path[tmp]
 
         total = total + min
-    codeCoverage(branches)
-    return total
-
-def codeCoverage(branches):
-    print("Check out this coverage:")
     print(branches)
+    return total
 
