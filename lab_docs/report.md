@@ -14,6 +14,19 @@ We are aiming at P+ and for that we:
 * Wrote 2 extra test cases each (in total each person wrote 4 test cases)
 * Carried out the refactoring plan for each function described under the headline Refactoring
 
+## Branch structure
+assessment-tests contains all of our added tests
+assessment-refactor contains all of our refactored functions
+
+The coverage tool for each function is in different branches:
+coverage/diego
+coverage/johan
+coverage/max_flow_dfs
+coverage/palindrome_dict
+test/branch-coverage-edmond-karp
+test/branch-coverage-fix-insert
+
+
 ## Onboarding experience
 
 Did it build and run as documented?
