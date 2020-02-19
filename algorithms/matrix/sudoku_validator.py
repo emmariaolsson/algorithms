@@ -7,25 +7,35 @@ The board is always 9 cells by 9 cells, and every cell only contains integers fr
 
 # Using dict/hash-table
 from collections import defaultdict
+
 def valid_solution_hashtable(board):
     for i in range(len(board)):
         dict_row = defaultdict(int)
         dict_col = defaultdict(int)
-        for j in range(len(board[0])):
-            value_row = board[i][j]
-            value_col = board[j][i]
-            if not value_row or value_col == 0:
-                return False
-            if value_row in dict_row:
-                return False
-            else:
-                dict_row[value_row] += 1
+        check_valid_value(board)
+    if not check_addition(board):
+        return False
+    #if everything is right
+    return True
 
-            if value_col in dict_col:
-                return False
-            else:
-                dict_col[value_col] += 1
+def check_valid_value(board):
+    for j in range(len(board[0])):
+        value_row = board[i][j]
+        value_col = board[j][i]
+        if not value_row or value_col == 0:
+            return False
+        if value_row in dict_row:
+            return False
+        else:
+            dict_row[value_row] += 1
 
+        if value_col in dict_col:
+            return False
+        else:
+            dict_col[value_col] += 1
+    return board
+
+def check_addition(board):
     for i in range(3):
         for j in range(3):
             grid_add = 0
@@ -35,7 +45,7 @@ def valid_solution_hashtable(board):
             if grid_add != 45:
                 return False
     return True
-
+   
 
 # Without hash-table/dict
 def valid_solution(board):

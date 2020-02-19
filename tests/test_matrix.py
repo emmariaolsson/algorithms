@@ -40,7 +40,6 @@ class TestBombEnemy(unittest.TestCase):
 class TestCopyTransform(unittest.TestCase):
     """[summary]
     Test for the file copy_transform.py
-
     Arguments:
         unittest {[type]} -- [description]
     """
@@ -62,7 +61,6 @@ class TestCopyTransform(unittest.TestCase):
 class TestCroutMatrixDecomposition(unittest.TestCase):
     """[summary]
     Test for the file crout_matrix_decomposition.py
-
     Arguments:
         unittest {[type]} -- [description]
     """
@@ -97,7 +95,6 @@ class TestCroutMatrixDecomposition(unittest.TestCase):
 class TestCholeskyMatrixDecomposition(unittest.TestCase):
     """[summary]
     Test for the file cholesky_matrix_decomposition.py
-
     Arguments:
         unittest {[type]} -- [description]
     """
@@ -130,7 +127,6 @@ class TestCholeskyMatrixDecomposition(unittest.TestCase):
 class TestMultiply(unittest.TestCase):
     """[summary]
     Test for the file multiply.py
-
     Arguments:
         unittest {[type]} -- [description]
     """
@@ -143,7 +139,6 @@ class TestMultiply(unittest.TestCase):
 class TestRotateImage(unittest.TestCase):
     """[summary]
     Test for the file rotate_image.py
-
     Arguments:
         unittest {[type]} -- [description]
     """
@@ -156,7 +151,6 @@ class TestRotateImage(unittest.TestCase):
 class TestSparseDotVector(unittest.TestCase):
     """[summary]
     Test for the file sparse_dot_vector.py
-
     Arguments:
         unittest {[type]} -- [description]
     """
@@ -169,7 +163,6 @@ class TestSparseDotVector(unittest.TestCase):
 class TestSpiralTraversal(unittest.TestCase):
     """[summary]
     Test for the file spiral_traversal.py
-
     Arguments:
         unittest {[type]} -- [description]
     """
@@ -182,7 +175,6 @@ class TestSpiralTraversal(unittest.TestCase):
 class TestSudokuValidator(unittest.TestCase):
     """[summary]
     Test for the file sudoku_validator.py
-
     Arguments:
         unittest {[type]} -- [description]
     """
