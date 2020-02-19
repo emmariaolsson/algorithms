@@ -62,28 +62,48 @@ def is_palindrome_dict(head):
     d = {1: [0,1,5,6], 2: [2,4], 3: [3]}
     '3' is the middle outlier, 2+4=6, 0+6=6 and 5+1=6 so we have a palindrome.
     """
-    if not head or not head.next:
+    if not head: 
+        return True 
+    if not head.next:
         return True
     d = {}
     pos = 0
     while head:
-        if head.val in d.keys():
-            d[head.val].append(pos)
-        else:
-            d[head.val] = [pos]
+        #Helpfunction fill_dict to decrease cyclomatic coplexity
+        fill_dict(head, d, pos)
         head = head.next
         pos += 1
+    #Helpfunction to decrease cyclomatic coplexity
+    if not check_valid_palindrome(head, d, pos):
+        return False
+    return True
+
+def fill_dict(head, d, pos):
+    if head.val in d.keys():
+        d[head.val].append(pos)
+    else:
+        d[head.val] = [pos]
+    return d, head, pos
+
+def check_valid_palindrome(head, d, pos):
     checksum = pos - 1
     middle = 0
     for v in d.values():
         if len(v) % 2 != 0:
             middle += 1
         else:
-            step = 0
-            for i in range(0, len(v)):
-                if v[i] + v[len(v) - 1 - step] != checksum:
-                    return False
-                step += 1
+            #Helpfunction to decrease cyclomatic coplexity
+            if not even_palindrome(v, checksum):
+                return False
         if middle > 1:
             return False
     return True
+
+def even_palindrome(v, checksum):
+    step = 0
+    for i in range(0, len(v)):
+        if v[i] + v[len(v) - 1 - step] != checksum:
+            return False
+        step += 1
+    return True
+

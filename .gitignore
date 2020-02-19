@@ -2,6 +2,7 @@ __pycache__/
 *.py[cod]
 *.iml
 *.xml
+*.html
 .idea/
 .cache/
 .pytest_cache/
@@ -13,5 +14,6 @@ __pycache__/
 /*.egg
 # docs
 build/
+algo/
 
 .vscode/
