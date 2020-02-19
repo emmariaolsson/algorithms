@@ -65,30 +65,38 @@ class TreeNode:
         self.c = dict()
         self.sym = None
 
-
-def bracket(words, symbols):
-
+def symbol_dict(symbols):
     root = TreeNode()
     for s in symbols:
-
         t = root
         for char in s:
             if char not in t.c:
                 t.c[char] = TreeNode()
             t = t.c[char]
         t.sym = s
+    return root
+
+def get_sym_list(word, root):
+    i = 0
+    symlist = list()
+    while i < len(word):
+        j, t = i, root
+        while j < len(word) and word[j] in t.c:
+            t = t.c[word[j]]
+            if t.sym is not None:
+                symlist.append((j + 1 - len(t.sym), j + 1, t.sym))
+            j += 1
+        i += 1
+    return symlist
+
+def bracket(words, symbols):
+    root = symbol_dict(symbols)
+    
     result = dict()
     for word in words:
-        i = 0
-        symlist = list()
-        while i < len(word):
-            j, t = i, root
-            while j < len(word) and word[j] in t.c:
-                t = t.c[word[j]]
-                if t.sym is not None:
-                    symlist.append((j + 1 - len(t.sym), j + 1, t.sym))
-                j += 1
-            i += 1
+        symlist = get_sym_list(word, root)
+
+        # format result to string
         if len(symlist) > 0:
             sym = reduce(lambda x, y: x if x[1] - x[0] >= y[1] - y[0] else y,
                          symlist)
