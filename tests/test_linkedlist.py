@@ -9,7 +9,8 @@ from algorithms.linkedlist import (
     is_cyclic,
     merge_two_list, merge_two_list_recur,
     is_palindrome, is_palindrome_stack, is_palindrome_dict,
-    RandomListNode, copy_random_pointer_v1, copy_random_pointer_v2
+    RandomListNode, copy_random_pointer_v1, copy_random_pointer_v2,
+    intersection
 )
 
 
@@ -209,6 +210,72 @@ class TestSuite(unittest.TestCase):
         random_list_node3.next, random_list_node3.random = random_list_node4, random_list_node2
         random_list_node4.next = random_list_node5
         random_list_node5.random = random_list_node3
+
+    def test_intersection(self):
+        # create linked list as:
+        # 1 -> 3 -> 5
+        #            \
+        #             7 -> 9 -> 11
+        #            /
+        # 2 -> 4 -> 6
+        a1 = Node(1)
+        b1 = Node(3)
+        c1 = Node(5)
+        d = Node(7)
+        a2 = Node(2)
+        b2 = Node(4)
+        c2 = Node(6)
+        e = Node(9)
+        f = Node(11)
+
+        a1.next = b1
+        b1.next = c1
+        c1.next = d
+        a2.next = b2
+        b2.next = c2
+        c2.next = d
+        d.next = e
+        e.next = f
+
+        self.assertEqual(7, intersection.intersection(a1, a2).val)
+
+    def test_intersection_no_merge(self):
+        # create linked list as:
+        # 1 -> 3 -> 5
+        # 2 -> 4 -> 6
+        a1 = Node(1)
+        b1 = Node(3)
+        c1 = Node(5)
+        a2 = Node(2)
+        b2 = Node(4)
+        c2 = Node(6)
+
+        a1.next = b1
+        b1.next = c1
+        a2.next = b2
+        b2.next = c2
+
+        self.assertEqual(None, intersection.intersection(a1, a2))
+
+    def test_intersection_one_longer(self):
+        # create linked list as:
+        # 1 -> 3 -> 5
+        # 2 -> 4 -> 6
+        pre_a1 = Node(0)
+        a1 = Node(1)
+        b1 = Node(3)
+        c1 = Node(5)
+        a2 = Node(2)
+        b2 = Node(4)
+        c2 = Node(6)
+
+        pre_a1.next = a1
+        a1.next = b1
+        b1.next = c1
+        a2.next = b2
+        b2.next = c2
+
+        self.assertEqual(None, intersection.intersection(pre_a1, a2))
 
 
 if __name__ == "__main__":

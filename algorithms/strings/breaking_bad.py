@@ -67,8 +67,10 @@ class TreeNode:
 
 
 def bracket(words, symbols):
+
     root = TreeNode()
     for s in symbols:
+
         t = root
         for char in s:
             if char not in t.c:
