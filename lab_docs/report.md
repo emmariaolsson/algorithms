@@ -321,6 +321,34 @@ Below is a list of each function. It describes the current tests and new require
    * Requirement 1: Call the function with a pattern string where the first two characters are the same. The function is expected to still return the correct list of indexes.
 
    Patch: `git diff 6afcc9dca4a274b133e9d01684d9282282b9ee21 tests/test_strings.py`
+   
+- *text_justification@34-89@./algorithms/strings/text_justification.py*
+   
+   There are two test sets for this function that test that the given inputs give som given outputs. They both test some regular cases but only some of the edge cases for the functions. They do not test that a word that is exactly as long as the line width is written on one line for example.
+   
+   New rquirements:
+   
+   * The function must output a list of strings of length max_width which is given as an input
+   * The function must throw a value error if a word in the input is longer than max_width
+   * The function must separate each word with at least one blank space or a line break
+   * The function must add trailing spaces in order to fit a word to a line if the next word does not fit to the line
+   
+   Patch: `git diff f6fc4bba2a6d1b296e9d51dbafa5c756bf3f4596 tests/test_strings.py`
+
+
+- *three_sum@18-48@./algorithms/array/three_sum.py*
+   
+   There are two test sets for this function that test that given inputs give some given outputs. This tests that the function gives sets of solutions with three integers each. 
+   
+   New rquirements:
+   
+   * All arrays in the output set must be unique with regards to the output set
+   * All arrays returned must be of length three
+   * All arrays returned must sum to zero
+   * All arrays returned must contain values that exist in the input set
+   * Entries in the output arrays must be unique and distinct from the input set
+   
+   Patch: `git diff 2331357ab76a00cc78f57b15f171f10fa56ce236 tests/test_array.py`
 
 TODO: add htmlcov files to git? and link index.html before and after?
 
@@ -362,10 +390,6 @@ The plan for refactoring complex code was mostly to split up the functions into 
 
    Patch: `git diff 3ce4ad072d14d2103f5645078cc321bff70a3350 algorithms/tree/red_black_tree/red_black_tree.py`
 
-- *delete_fixup@209-269@./algorithms/tree/red_black_tree/red_black_tree.py*
-
-   ?????????????????????
-
 
 -  *strip_url_params1@14-68@./algorithms/strings/strip_url_params.py*
 
@@ -384,6 +408,19 @@ The plan for refactoring complex code was mostly to split up the functions into 
    The initial cyclomatic complexity of this function was 12. The complexity was necessary since the problem of sudoku relies on stored history from previous iterations when validating the matrix values. By moving out two of the for-loops into two separate helpfunctions check_valid_value and check_addition, the complexity was decreased from 12 to 3 (75% reduction). 
 
    Patch: `todo`
+   
+- *text_justification@34-89@./algorithms/strings/text_justification.py*
+   
+   This function has a high cyclomatic complexity because of the many cases it has to take into account when justifying text to a given line width. This can be reduced by splitting the function into several different functions that each have their own functional requirements. The text_justification function can be split up into a left_align and fit_words_to_row function that takes a list of words in an input and add trailing spaces or padding spaces between these words respectively. One can also move the counting of what words fit in the next row into a separate function, this would massively decrease the cyclomatic complexity and make testing easier. 
+   
+   Patch: `git diff c9c1440972dc27e3b88810eea5e82d244cfad1fc algorithms/strings/text_justification.py`
+
+
+- *three_sum@18-48@./algorithms/array/three_sum.py*
+   
+   The original function has high cyclomatic complexity mainly because of the way it handles duplicates in the function. One can instead use the property of python sets that state that there can be no duplicates in the set which basically means that the three_sum function does not need to handle duplicate cases. It is also possible to reduce complexity by adding a helper function that replaces part of the function into a separate function. This function would check for pairs in the input array which sum to a given value, this will reduce the cyclomatic complexity of the three_sum function.
+   
+   Patch: `git diff aac4618c43d9e79bcfb1164b2119ef70f6cdfbf4 algorithms/array/three_sum.py`
 
 
 ## Overall experience
