@@ -10,6 +10,35 @@ from collections import defaultdict
 import urllib
 import urllib.parse
 
+def add_result(key_value_string, dict, params_to_strip, result):
+    for i in key_value_string:
+        _token = i.split('=')
+        if _token[0]:
+            length = len(_token[0])
+            if length == 1:
+                if _token and (not(_token[0] in dict)):
+                    if params_to_strip:
+                        if _token[0] != params_to_strip[0]:
+                            dict[_token[0]] = _token[1]
+                            result = result + _token[0] + '=' + _token[1]
+                    else:
+                        if not _token[0] in dict:
+                            dict[_token[0]] = _token[1]
+                            result = result + _token[0] + '=' + _token[1]
+            else:
+                check = _token[0]
+                letter = check[1]
+                if _token and (not(letter in dict)):
+                    if params_to_strip:
+                        if letter != params_to_strip[0]:
+                            dict[letter] = _token[1]
+                            result = result + _token[0] + '=' + _token[1]
+                    else:
+                        if not letter in dict:
+                            dict[letter] = _token[1]
+                            result = result + _token[0] + '=' + _token[1]
+    return result
+
 # Here is a very non-pythonic grotesque solution
 def strip_url_params1(url, params_to_strip=None):
     
@@ -39,32 +68,8 @@ def strip_url_params1(url, params_to_strip=None):
                     string += char
             dict = defaultdict(int)
             # logic for checking whether we should add the string to our result
-            for i in key_value_string:
-                _token = i.split('=')
-                if _token[0]:
-                    length = len(_token[0])
-                    if length == 1:
-                        if _token and (not(_token[0] in dict)):
-                            if params_to_strip:
-                                if _token[0] != params_to_strip[0]:
-                                    dict[_token[0]] = _token[1]
-                                    result = result + _token[0] + '=' + _token[1]
-                            else:
-                                if not _token[0] in dict:
-                                    dict[_token[0]] = _token[1]
-                                    result = result + _token[0] + '=' + _token[1]
-                    else:
-                        check = _token[0]
-                        letter = check[1]
-                        if _token and (not(letter in dict)):
-                            if params_to_strip:
-                                if letter != params_to_strip[0]:
-                                    dict[letter] = _token[1]
-                                    result = result + _token[0] + '=' + _token[1]
-                            else:
-                                if not letter in dict:
-                                    dict[letter] = _token[1]
-                                    result = result + _token[0] + '=' + _token[1]
+            result = add_result(key_value_string, dict, params_to_strip, result)
+            
     return result
 
 # A very friendly pythonic solution (easy to follow)
