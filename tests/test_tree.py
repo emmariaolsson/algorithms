@@ -7,6 +7,7 @@ from algorithms.tree.traversal import (
     inorder_rec
 )
 from algorithms.tree.b_tree import BTree
+from algorithms.tree.red_black_tree.red_black_tree import RBTree, RBNode
 
 import unittest
 
@@ -107,6 +108,59 @@ class TestBTree(unittest.TestCase):
         self.assertEqual(btree.root.keys, [])
         self.assertEqual(btree.root.children, [])
 
+class TestRedBlackTree(unittest.TestCase):
+    #Check that with a null parent node color is 0 and node is root
+    def test_parent_null(self):
+        node = RBNode(5,0)
+        node.parent = None
+        rb = RBTree()
+        rb.fix_insert(node)
+        self.assertTrue(node.color == 0)
+        self.assertTrue(rb.root == node)
+        
+     #Check that with a black parent do nothing
+    def test_parent_black(self):
+        rb = RBTree()
+        node = RBNode(5,0)
+        node.parent = RBNode(2, 0)
+        rb.root = node.parent
+        rb.fix_insert(node)
+        self.assertTrue(node.color == 0)
+        self.assertTrue(node.val == 5)
+ 
+    #Check that with a red parent, red uncle, whole tree should be black
+    def test_parent_red_uncle_red(self):
+        rb = RBTree()
+        node = RBNode(5,0)
+        node.parent = RBNode(2, 1)
+        node.parent.left = node
+        node.parent.parent = RBNode(2, 0)
+        node.parent.parent.left = node.parent
+        node.parent.parent.right = RBNode(1, 1)
+        rb.root = node.parent.parent
+        rb.fix_insert(node)
+        self.assertTrue(rb.root.color == 0)
+        self.assertTrue(rb.root.left.color == 0)
+        self.assertTrue(rb.root.right.color == 0)
+        self.assertTrue(rb.root.left.left.color == 0)
 
+        
+    #Check that with a red parent thats right of grandparent, 
+    # and black uncle left of grandparent, 
+    # Parent and node should be left instead of right
+    # and color of parent should be red
+    def test_parent_red_uncle_black(self):
+        rb = RBTree()
+        node = RBNode(5,0)
+        node.parent = RBNode(2, 1)
+        node.parent.parent = RBNode(2, 0)
+        node.parent.parent.left = RBNode(1, 0)
+        node.parent.parent.right = node.parent
+        rb.root = node.parent.parent
+        rb.fix_insert(node)
+        self.assertTrue(rb.root.color == 0)
+        self.assertTrue(rb.root.left.color == 1)
+        self.assertTrue(rb.root.left.left.color == 0)
+     
 if __name__ == '__main__':
     unittest.main()
