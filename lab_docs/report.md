@@ -26,6 +26,30 @@ The coverage tool for each function is in different branches:
 * test/branch-coverage-edmond-karp
 * test/branch-coverage-fix-insert
 
+## Added tests
+1. `test_no_match` in `tests/test_strings.py`
+2. `test_duplicate_symbols` in `tests/test_strings.py`
+3. `test_intersection_no_merge` in `tests/test_linkedlist.py`
+4. `test_intersection_one_longer` in `tests/test_linkedlist.py` 
+5. `test_parent_null` in `tests/test_tree.py`
+6. `test_parent_black` in `tests/test_tree.py`
+7. `test_parent_red_uncle_red` in `tests/test_tree.py`
+8. `test_parent_red_uncle_black` in `tests/test_tree.py`
+9. `strip_url_params1` in `tests/test_strings.py` (a few assertions)
+10. `knuth_morris_pratt` in `tests/test_strings.py`
+11. `test_text_justification_1` in `tests/test_strings.py`
+12. `test_text_justification_2` in `tests/test_strings.py`
+13. `test_text_justification_3` in `tests/test_strings.py`
+14. `test_text_justification_4` in `tests/test_strings.py`
+15. `test_three_sum_1` in `tests/test_array.py`
+16. `test_three_sum_2` in `tests/test_array.py`
+17. `test_three_sum_3` in `tests/test_array.py`
+18. `test_three_sum_4` in `tests/test_array.py`
+19. `test_if_palindrome_dict_odd_negative_middle` in `tests/test_linkedlist.py`
+20. `test_if_palindrome_dict_even_positive` in `tests/test_linkedlist.py`
+21. `test_if_palindrome_dict_None` in `tests/test_linkedlist.py`
+22. `test_if_palindrome_dict_single` in `tests/test_linkedlist.py`
+23. `test_sudoku_validator` in `tests/test_matrix.py` (three assertions)
 
 ## Onboarding experience
 
@@ -369,11 +393,11 @@ Below is a list of each function. It describes the current tests and new require
    
    Patch: `git diff 2331357ab76a00cc78f57b15f171f10fa56ce236 tests/test_array.py`
 
-TODO: add htmlcov files to git? and link index.html before and after?
+Coverage reports below are not a direct comparison since functions that had no tests are not included in htmlcov_master (should be 0%). Subsequently, when a test is added there is a risk that the total coverage is decreased. Look at individual functions instead.
 
-Report of old coverage: https://github.com/emmariaolsson/algorithms 
+Report of old coverage: https://github.com/emmariaolsson/algorithms/blob/coverage-reports/htmlcov_master/index.html
 
-Report of new coverage: https://github.com/emmariaolsson/algorithms/tree/assessment-tests
+Report of new coverage: https://github.com/emmariaolsson/algorithms/blob/coverage-reports/htmlcov/index.html
 
 ## Refactoring
 
