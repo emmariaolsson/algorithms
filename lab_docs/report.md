@@ -8,6 +8,12 @@ URL: https://github.com/keon/algorithms
 
 Minimal and clean example implementations of data structures and algorithms in Python 3.
 
+## P+
+We are aiming at P+ and for that we:
+* Used  issue tracker and systematic commit messages to manage project
+* Wrote 2 extra test cases each (in total each person wrote 4 test cases)
+* Carried out the refactoring plan for each function described under the headline Refactoring
+
 ## Onboarding experience
 
 Did it build and run as documented?
