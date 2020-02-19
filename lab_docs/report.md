@@ -276,7 +276,7 @@ Below is a list of each function. It describes the current tests and new require
 
    * Requirement 4: If the number of nodes in the linked list is odd and the elements from index 0 to (length-1)/2, correspond with the elements from length-1, tracing backwards to (length+1)/2 the function should return True.
 
-   Patch: `todo`
+   Patch: `git diff e3f6990cc4950a616ae333f234da7a6ac969d5b7 tests/test_linkedlist.py`
 
 - *valid_solution_hashtable@10-37@./algorithms/matrix/sudoku_validator.py*
 
@@ -294,7 +294,7 @@ Below is a list of each function. It describes the current tests and new require
 
    * Requirement 5: The values on one row must add up to 45 for the function to return True.
 
-   Patch: `todo`
+   Patch: `git diff cf413075985b450bd86cfddb104d844e6fc64ea4 tests/test_matrix.py`
 
 - *strip_url_params1@14-68@./algorithms/strings/strip_url_params.py*
 
@@ -370,7 +370,7 @@ The plan for refactoring complex code was mostly to split up the functions into 
 
    The cyclomatic complexity of this function was 10 to begin with and is necessary in the sense that all complex iterations are needed to determine if the input is valid or not. However, the cyclomatic complexity could be significantly decreased by extracting helpfunctions. The function consists of a while-loop in which the dictionary is filled depending on an if-statement. The while-loop is then followed by a for-loop containing an if-statement which checks if the values appear an even number of times. If not, it iterates over the the values that are repeated and determine if they have the corresponding positions forwards and backwards. By extracting three helpfunctions (fill_dict with the while-loop, check_valid_palindrome with the outer for-loop and even_palindrome with the inner for-loop) the cyclomatic complexity was decreased with 50%, from 10 to 5.
 
-   Patch: `todo`
+   Patch: `git diff c96cd4498f2c850c72340e5eb23cda9d3b336bb2 algorithms/linkedlist/is_palindrome.py`
 
 - *edmonds_karp@43-80@./algorithms/graph/maximum_flow.py*
 
@@ -413,7 +413,7 @@ The plan for refactoring complex code was mostly to split up the functions into 
 
    The initial cyclomatic complexity of this function was 12. The complexity was necessary since the problem of sudoku relies on stored history from previous iterations when validating the matrix values. By moving out two of the for-loops into two separate helpfunctions check_valid_value and check_addition, the complexity was decreased from 12 to 3 (75% reduction). 
 
-   Patch: `todo`
+   Patch: `git diff ed4b44eba60d8ca2ed99ec4e507fbc41fafc9615 algorithms/matrix/sudoku_validator.py`
    
 - *text_justification@34-89@./algorithms/strings/text_justification.py*
    
