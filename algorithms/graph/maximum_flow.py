@@ -40,6 +40,30 @@ def ford_fulkerson(capacity, source, sink):
             break
     return ret
 
+def edmonds_karp_helper(q, vertices, visit, flow, capacity, par, sink, tmp):
+    while q.qsize():
+        front = q.get()
+        idx, current_flow = front
+        if idx == sink:
+            tmp = current_flow
+            break
+        edmonds_karp_helper_find_flow(q, vertices, visit, flow, capacity, par, sink, idx, current_flow)
+    return tmp
+        
+def edmonds_karp_helper_find_flow(q, vertices, visit, flow, capacity, par, sink, idx, current_flow):
+    for nxt in range(vertices):
+        if not visit[nxt] and flow[idx][nxt] < capacity[idx][nxt]:
+            visit[nxt] = True
+            par[nxt] = idx
+            q.put((nxt, min(current_flow, capacity[idx][nxt]-flow[idx][nxt])))
+
+def edmonds_karp_helper_update_flow(parent, flow, idx, tmp, par):
+    while parent != -1:
+            flow[parent][idx] += tmp
+            flow[idx][parent] -= tmp
+            idx = parent
+            parent = par[parent]
+
 def edmonds_karp(capacity, source, sink):
     # Computes maximum flow from source to sink using BFS.
     # Time complexity : O(V*E^2)
@@ -55,28 +79,14 @@ def edmonds_karp(capacity, source, sink):
         visit[source] = True
         q.put((source, 1 << 63))
         # Finds new flow using BFS.
-        while q.qsize():
-            front = q.get()
-            idx, current_flow = front
-            if idx == sink:
-                tmp = current_flow
-                break
-            for nxt in range(vertices):
-                if not visit[nxt] and flow[idx][nxt] < capacity[idx][nxt]:
-                    visit[nxt] = True
-                    par[nxt] = idx
-                    q.put((nxt, min(current_flow, capacity[idx][nxt]-flow[idx][nxt])))
+        tmp = edmonds_karp_helper(q, vertices, visit, flow, capacity, par, sink,tmp)
         if par[sink] == -1: 
             break
         ret += tmp
         parent = par[sink]
         idx = sink
         # Update flow array following parent starting from sink.
-        while parent != -1:
-            flow[parent][idx] += tmp
-            flow[idx][parent] -= tmp
-            idx = parent
-            parent = par[parent]
+        edmonds_karp_helper_update_flow(parent, flow, idx, tmp, par)
     return ret
 
 def dinic_bfs(capacity, flow, level, source, sink):
