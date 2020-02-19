@@ -307,6 +307,8 @@ Below is a list of each function. It describes the current tests and new require
    * Requirement 2: Call the function with a url not containing any parameters. The same url must be returned.
 
    * Requirement 3: Call the function with a url containing a parameter without a key. The  same url must be returned, but without the parameter. 
+   
+   Patch: `git diff 1d328293f3e03cced13f8e95495cfda1627a2730 tests/test_strings.py`
 
 - *knuth_morris_pratt@10-34@./algorithms/strings/knuth_morris_pratt.py*
 
@@ -318,7 +320,7 @@ Below is a list of each function. It describes the current tests and new require
 
    * Requirement 1: Call the function with a pattern string where the first two characters are the same. The function is expected to still return the correct list of indexes.
 
-   Patch: `todo`
+   Patch: `git diff 6afcc9dca4a274b133e9d01684d9282282b9ee21 tests/test_strings.py`
 
 TODO: add htmlcov files to git? and link index.html before and after?
 
@@ -369,13 +371,13 @@ The plan for refactoring complex code was mostly to split up the functions into 
 
    The cyclomatic complexity of this function is 20. The complexity is more or less necessary. The function is very long since it checks each parameters length, if it has been added to the resulting url, if it must be removed, etc. It’s possible to reduce this complexity by dividing the code into smaller units. The part of the code that is responsible for checking whether a parameter should be added to the final url (to be returned by the function) can have its own function. Doing this reduces the complexity from 20 to 7 (65% reduction).
 
-   Patch: `todo`
+   Patch: `git diff 2c3122e9f126959927fc8b24ea46c1354833ce22 algorithms/strings/strip_url_params.py`
 
 - *maximum_flow_dfs@27-83@./algorithms/graph/maximum_flow_dfs.py*
 
    The cyclomatic complexity of this function is 10. The complexity is necessary because the functionality of the function requires the program to use the dfs algorithms to find a path, get the minimum flow and reduce the capacity. It’s possible to reduce this complexity by dividing the function inte smaller units. The bfs algorithm now has its own function, and so does the part of the code that reduces the capacity. These changes reduces the complexity from 10 to 3 (70% reduction)
 
-   Patch: `todo`
+   Patch: `git diff 43f9add34b0ef402ae3c84c07b29b5a7cc6d64d9 algorithms/graph/maximum_flow_dfs.py`
 
 - *valid_solution_hashtable@10-37@./algorithms/matrix/sudoku_validator.py*
 
