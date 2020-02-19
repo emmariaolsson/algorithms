@@ -174,6 +174,32 @@ class TestSuite(unittest.TestCase):
     def test_is_palindrome_dict(self):
         self.assertTrue(is_palindrome_dict(self.l))
         self.assertFalse(is_palindrome_dict(self.l1))
+        
+    #Suppose to cover branch 10 (if middle > 1)
+    def test_if_palindrome_dict_odd_negative_middle(self):
+        self.l2 = Node('A')
+        self.l2.next = Node('B')
+        self.l2.next.next = Node('C')
+        self.l2.next.next.next = Node('D')
+        self.l2.next.next.next.next = Node('A')
+        self.assertFalse(is_palindrome_dict(self.l2))
+    
+    #Suppose to cover branch 10 and 12 (even and palindrome)
+    def test_if_palindrome_dict_even_positive(self):
+        self.l3 = Node('A')
+        self.l3.next = Node('N')
+        self.l3.next.next = Node('N')
+        self.l3.next.next.next = Node('A')
+        self.assertTrue(is_palindrome_dict(self.l3))
+
+    #Suppose to cover branch 0 (if not head)
+    def test_if_palindrome_dict_None(self):
+        self.assertTrue(is_palindrome_dict(None))
+
+    #Suppose to cover branch 1 (if not head.next)    
+    def test_if_palindrome_dict_single(self):
+        self.l4 = Node('A')            
+        self.assertTrue(is_palindrome_dict(self.l4))
 
     def test_solution_0(self):
         self._init_random_list_nodes()
